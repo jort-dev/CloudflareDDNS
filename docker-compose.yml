@@ -1,0 +1,6 @@
+﻿services:
+  cloudflare_ddns:
+    image: cloudflare_ddns
+    build:
+      context: .
+      dockerfile: Cloudflare_DDNS/Dockerfile
