@@ -22,7 +22,6 @@ public class MainWorker : BackgroundService
         if (dnsRecords.Count == 0)
         {
             _logger.LogError("No DNS records found");
-            Environment.Exit(0);
             return;
         }
 
@@ -44,12 +43,14 @@ public class MainWorker : BackgroundService
             {
                 _logger.LogInformation(record.ToString());
             }
+            Environment.Exit(0);
+            return;
         }
 
 
         _mainService.ValidateDnsRecords(dnsRecords);
 
-        string? ipAddress = "Uninitialized in memory";
+        string? ipAddress = "[Uninitialized in this program]";
         do
         {
             string? newIpAddress = await _mainService.GetPublicIpAddress();
